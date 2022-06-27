@@ -6,7 +6,6 @@ import org.bukkit.boss.BarStyle;
 import org.bukkit.boss.BossBar;
 import org.bukkit.plugin.java.JavaPlugin;
 import ru.primer.mc.Events.JoinEvent;
-import java.io.File;
 
 public final class Main extends JavaPlugin {
 
@@ -16,8 +15,6 @@ public final class Main extends JavaPlugin {
 
     @Override
     public void onEnable() {
-        File file = new File("plugins/PrimeVanish");
-        boolean flag = file.mkdir();
         saveDefaultConfig();
         instance = this;
         Bukkit.getPluginManager().registerEvents(new JoinEvent(), this);

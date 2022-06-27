@@ -10,8 +10,7 @@ import org.bukkit.entity.Player;
 import java.util.UUID;
 
 import static ru.primer.mc.Main.bar;
-import static ru.primer.mc.Utils.HashMapManager.addPlayer;
-import static ru.primer.mc.Utils.HashMapManager.vanish;
+import static ru.primer.mc.Utils.ListManager.*;
 import static ru.primer.mc.Utils.Utils.*;
 
 public class CommandVanish implements CommandExecutor {
@@ -30,14 +29,14 @@ public class CommandVanish implements CommandExecutor {
         }
 
         UUID uuid = p.getUniqueId();
-        if(!vanish.containsKey(uuid) || !vanish.get(uuid)) {
+        if(!vanish.contains(uuid)) {
             for (Player player : Bukkit.getServer().getOnlinePlayers()) {
                 if (!player.hasPermission("vanish.vision")) {
                     player.hidePlayer(p);
                 }
             }
 
-            addPlayer(uuid, true);
+            addPlayer(uuid);
 
             bar.setTitle(getString("vanish"));
             bar.setColor(BarColor.GREEN);
@@ -51,7 +50,7 @@ public class CommandVanish implements CommandExecutor {
             player.showPlayer(p);
         }
 
-        addPlayer(uuid, false);
+        removePlayer(uuid);
         bar.removePlayer(p);
 
         message(getString("vanish-off"), p);

@@ -11,7 +11,7 @@ import java.util.Set;
 import java.util.UUID;
 
 import static ru.primer.mc.Main.bar;
-import static ru.primer.mc.Utils.HashMapManager.vanish;
+import static ru.primer.mc.Utils.ListManager.vanish;
 import static ru.primer.mc.Utils.Utils.getString;
 
 public class JoinEvent implements Listener {
@@ -22,12 +22,12 @@ public class JoinEvent implements Listener {
         }
 
         Player p = e.getPlayer();
-        Set<UUID> setKeys = vanish.keySet();
 
-        for (UUID k : setKeys) {
-            Player player = Bukkit.getPlayer(k);
+        for (int i = 0; vanish.size() > i; i++) {
+            UUID uuid = vanish.get(i);
+            Player player = Bukkit.getPlayer(vanish.get(i));
 
-            if (!vanish.get(k)) {
+            if (!vanish.contains(uuid)) {
                 return;
             }
 
