@@ -1,18 +1,14 @@
 package ru.primer.mc.Events;
 
 import org.bukkit.Bukkit;
-import org.bukkit.boss.BarColor;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.player.PlayerJoinEvent;
-
-import java.util.Set;
 import java.util.UUID;
 
-import static ru.primer.mc.Main.bar;
-import static ru.primer.mc.Utils.ListManager.vanish;
-import static ru.primer.mc.Utils.Utils.getString;
+import static ru.primer.mc.Main.bossBar;
+import static ru.primer.mc.Utils.Utils.vanish;
 
 public class JoinEvent implements Listener {
     @EventHandler
@@ -35,9 +31,7 @@ public class JoinEvent implements Listener {
                 for (Player players : Bukkit.getServer().getOnlinePlayers()) {
                     players.hidePlayer(player);
                 }
-                bar.setTitle(getString("vanish"));
-                bar.setColor(BarColor.GREEN);
-                bar.addPlayer(player);
+                bossBar.addPlayer(player);
                 return;
             }
 

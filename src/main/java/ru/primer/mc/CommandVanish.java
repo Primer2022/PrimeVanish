@@ -1,7 +1,6 @@
 package ru.primer.mc;
 
 import org.bukkit.Bukkit;
-import org.bukkit.boss.BarColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,8 +8,7 @@ import org.bukkit.entity.Player;
 
 import java.util.UUID;
 
-import static ru.primer.mc.Main.bar;
-import static ru.primer.mc.Utils.ListManager.*;
+import static ru.primer.mc.Main.bossBar;
 import static ru.primer.mc.Utils.Utils.*;
 
 public class CommandVanish implements CommandExecutor {
@@ -38,9 +36,7 @@ public class CommandVanish implements CommandExecutor {
 
             addPlayer(uuid);
 
-            bar.setTitle(getString("vanish"));
-            bar.setColor(BarColor.GREEN);
-            bar.addPlayer(p);
+            bossBar.addPlayer(p);
 
             message(getString("vanish-on"), p);
             return true;
@@ -51,7 +47,7 @@ public class CommandVanish implements CommandExecutor {
         }
 
         removePlayer(uuid);
-        bar.removePlayer(p);
+        bossBar.removePlayer(p);
 
         message(getString("vanish-off"), p);
         return true;
